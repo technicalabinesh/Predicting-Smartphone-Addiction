@@ -1,63 +1,61 @@
-# Security Policy
+# Predicting Smartphone Addiction
 
-## Supported Versions
-Please report vulnerabilities for versions currently supported. This project uses semantic versioning:
+This repository contains a machine learning project focused on predicting smartphone addiction using an ensemble of gradient boosting models and a PyTorch tabular neural network.
 
-- Maintained versions: v1.x, v2.x
-- Older versions are not supported
+## Project Overview
 
-## Reporting a Vulnerability
+The main notebook performs:
+- Data loading from Kaggle Playground Series S6E8
+- Feature engineering (statistical, transformed, interaction, and group-based features)
+- 10-fold stratified cross-validation
+- Training of multiple models:
+  - LightGBM
+  - CatBoost
+  - XGBoost
+  - PyTorch Tabular ResNet
+- Rank-based ensemble weight optimization using SciPy
+- Submission file generation
 
-If you discover a security issue, please **do not** open a public issue or pull request. Instead, email us privately at:
+## Repository Structure
 
-`[email protected]`
+- `Predicting Smartphone Addiction` — main Jupyter notebook/script containing the full pipeline
+- `README.md` — project documentation
 
-Include the following in your report:
-- **Type of issue** (e.g., SQL Injection, XSS, buffer overflow)
-- **Affected files/paths and lines (if possible)**
-- **Branch/commit/tag** where the issue exists
-- **Steps to reproduce**
-- **Proof of concept or exploit** (optional but helpful)
-- **Impact assessment** (how might this be exploited)
+## Requirements
 
-## Response Process
+Install the core dependencies used in the notebook:
 
-1. We will acknowledge your report within **3 business days** and work on triage.
-2. A fix will be developed privately.
-3. Once resolved, a public security advisory or patch will be published.
+- Python 3.10+
+- numpy
+- pandas
+- scipy
+- scikit-learn
+- lightgbm
+- catboost
+- xgboost
+- torch
 
-## Contributors
+You can install them with:
 
-We appreciate responsible disclosure following this policy. Thank you for helping keep this project secure.
+```bash
+pip install numpy pandas scipy scikit-learn lightgbm catboost xgboost torch
+```
 
----
+## How to Run
 
-## Example `SECURITY.md`
+1. Download the competition data from Kaggle:
+   - Playground Series S6E8
+2. Update input file paths in the notebook if needed.
+3. Run the notebook end-to-end.
+4. The output submission file is generated as:
+   - `submission_0.99_ensemble.csv`
 
-Here’s a condensed but practical version you can paste into your repo:
+## Notes
 
-```markdown
-# Security Policy
+- The workflow is optimized for GPU-backed training where available.
+- Random seeds are set for reproducibility.
+- Model performance is evaluated with ROC-AUC.
 
-## Supported Versions
-We currently support the following versions: v1.x, v2.x. Older versions are no longer supported.
+## License
 
-## Reporting a Vulnerability
-If you discover a potential security issue, please **do not** open a public issue or PR. Instead, send an email to:
-
-`[email protected]`
-
-Please include:
-- Vulnerability type (e.g., XSS, SQLi)
-- Affected file(s) and location(s)
-- Branch, tag, or commit reference
-- Reproduction steps
-- (Optional) Proof of concept
-- Possible impact of the issue
-
-## Our Process
-1. Acknowledge within **3 business days**
-2. Investigate and fix privately
-3. Publish a patch or security advisory when resolved
-
-Thank you for responsibly disclosing vulnerabilities.
+This project is shared for educational and experimentation purposes.
